@@ -3,214 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fancy Nancy's Sucre | Dessert Bitung 🦋</title>
+    <title>Fancy Nancy's Sucre | Dessert Bitung 🦋💎</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Playfair+Display:ital,wght@0,700;1,900&family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #fff9ff; }
+        body { font-family: 'Poppins', sans-serif; background-color: #fffaff; overflow-x: hidden; }
         .font-fancy { font-family: 'Pacifico', cursive; }
         .font-elegant { font-family: 'Playfair Display', serif; }
         
-        /* Tema Warna Fancy Nancy: Hot Pink, Purple, Lime Green */
-        .bg-fancy-pattern {
+        /* Background Pattern ala Fancy Nancy */
+        .bg-nancy {
             background-color: #fff0f6;
-            background-image: url("https://www.transparenttextures.com/patterns/floral-paper.png"); /* Pola bunga Nancy */
+            background-image: url("https://www.transparenttextures.com/patterns/fancy-pants.png");
         }
 
-        /* Dekorasi Kupu-kupu & Bunga */
-        .fancy-decoration::before {
-            content: "🦋 ✨ 🌸";
-            display: block;
-            text-align: center;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        /* Nav & Logo */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.9);
+            border-bottom: 5px solid #d1ff4d; /* Lime Green border */
+            box-shadow: 0 4px 15px rgba(218, 112, 214, 0.3);
         }
-
-        .card-fancy {
-            border: 3px solid #ffcaeb;
-            background: white;
-            border-radius: 2rem;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            overflow: hidden;
-        }
-        .card-fancy:hover {
-            transform: scale(1.03) rotate(1deg);
-            border-color: #d1ff4d; /* Lime Green */
-            box-shadow: 0 15px 30px rgba(255, 20, 147, 0.2);
-        }
-
-        /* Logo & Nav */
         .shop-logo {
             font-family: 'Pacifico', cursive;
-            color: #ff1493; /* Deep Pink */
-            text-shadow: 2px 2px #ccff00; /* Lime Shadow */
+            background: linear-gradient(to right, #ff1493, #9400d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px #d1ff4d);
         }
 
-        /* Modal Slide (Fancy Style) */
-        #cart-modal {
-            transition: all 0.5s ease-in-out;
-            background: linear-gradient(to bottom, #ffffff, #fff0f6);
-        }
-        .hidden-modal {
-            transform: translateX(100%);
-            opacity: 0;
-            visibility: hidden;
+        /* Hero Section dengan Sampul Makanan */
+        .hero-bg {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 10px double #ff1493;
         }
 
-        /* Tombol "Ooh La La" */
-        .btn-fancy {
-            background: linear-gradient(45deg, #ff1493, #da70d6);
+        /* Aksesoris Renda & Pita */
+        .lace-border {
+            border: 8px double #ffcaeb;
+            position: relative;
+        }
+        .lace-border::after {
+            content: "🎀";
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+        }
+
+        /* Card Produk yang Sangat Fancy */
+        .card-elegant {
+            background: white;
+            border-radius: 2.5rem;
+            border: 4px solid #ff1493;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        .card-elegant:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 20, 147, 0.3);
+            border-color: #d1ff4d;
+        }
+        .pearl-decoration {
+            border-bottom: 4px dotted #ffcaeb;
+            margin-bottom: 1rem;
+        }
+
+        /* Tombol Ooh La La */
+        .btn-nancy {
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #9400d3);
             color: white;
-            transition: all 0.3s;
-            border: 2px solid #fff;
+            border: 3px solid #d1ff4d;
+            box-shadow: 0 5px 0px #8b008b;
+            transition: all 0.2s;
         }
-        .btn-fancy:hover {
-            background: linear-gradient(45deg, #ccff00, #ff1493);
-            color: #4a0072;
-            transform: translateY(-2px);
+        .btn-nancy:hover {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0px #8b008b;
         }
 
-        @keyframes sparkle {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+        /* Modal Keranjang Slide */
+        #cart-modal {
+            transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            background: linear-gradient(135deg, #ffffff 0%, #fff0f6 100%);
+            border-left: 10px solid #d1ff4d;
         }
-        .sparkle-effect { animation: sparkle 1.5s infinite; }
+        .hidden-modal { transform: translateX(100%); opacity: 0; }
+
+        /* Animasi Berkilau */
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        .text-shine {
+            background: linear-gradient(to right, #ff1493 20%, #d1ff4d 40%, #d1ff4d 60%, #ff1493 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
     </style>
 </head>
-<body class="bg-fancy-pattern smooth-scroll text-gray-700">
+<body class="bg-nancy">
 
-    <nav class="bg-white/90 backdrop-blur-md border-b-4 border-lime-300 fixed w-full z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="shop-logo text-2xl flex items-center gap-2">
-                <span class="text-3xl">🦋</span>
-                <span>La Sucre Fancy</span>
+    <nav class="nav-glass fixed w-full z-50 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-white p-2 rounded-full border-2 border-pink-400 shadow-md">
+                    <span class="text-2xl">🦋</span>
+                </div>
+                <h1 class="shop-logo text-3xl font-bold">Le Sucre Magnifique</h1>
             </div>
             
-            <div class="hidden md:flex space-x-8 font-bold italic text-purple-600">
-                <a href="#home" class="hover:text-pink-500 transition underline decoration-lime-400 decoration-2">Bonjour</a>
-                <a href="#products" class="hover:text-pink-500 transition underline decoration-lime-400 decoration-2">Desserts</a>
-                <a href="#contact" class="hover:text-pink-500 transition underline decoration-lime-400 decoration-2">Contact</a>
-            </div>
-
-            <div onclick="toggleModal()" id="cart-icon" class="relative bg-purple-100 p-3 rounded-full cursor-pointer hover:rotate-12 transition border-2 border-purple-300 shadow-md">
-                <i class="fas fa-shopping-basket text-purple-600"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-yellow-400 text-purple-900 text-xs font-bold rounded-full px-2 py-0.5 border-2 border-white">0</span>
+            <div class="hidden md:flex space-x-10 items-center">
+                <a href="#home" class="font-bold text-purple-700 hover:text-pink-500 transition-all text-lg">Bonjour!</a>
+                <a href="#products" class="font-bold text-purple-700 hover:text-pink-500 transition-all text-lg">Desserts</a>
+                <a href="#contact" class="font-bold text-purple-700 hover:text-pink-500 transition-all text-lg">Contact</a>
+                <div onclick="toggleModal()" id="cart-icon" class="cursor-pointer bg-pink-500 p-3 rounded-2xl border-b-4 border-pink-800 hover:scale-110 transition relative">
+                    <i class="fas fa-shopping-bag text-white text-xl"></i>
+                    <span id="cart-count" class="absolute -top-3 -right-3 bg-yellow-400 text-purple-900 font-black rounded-full px-2 py-0.5 border-2 border-white text-xs">0</span>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div id="cart-modal" class="hidden-modal fixed top-0 right-0 z-[60] w-full max-w-md h-full shadow-2xl flex flex-col border-l-8 border-lime-300">
-        <div class="p-6 border-b-4 border-pink-200 flex justify-between items-center bg-gradient-to-r from-pink-100 to-purple-100">
-            <h2 class="font-fancy text-2xl text-purple-700">Ooh La La Cart! 🌸</h2>
-            <button onclick="toggleModal()" class="text-purple-400 hover:text-pink-600 text-3xl font-bold">&times;</button>
-        </div>
-        
-        <div id="cart-items-list" class="flex-grow overflow-y-auto p-6 space-y-4">
-            <div class="text-center py-20">
-                <i class="fas fa-wand-magic-sparkles text-4xl text-pink-200 mb-4"></i>
-                <p class="text-gray-400 italic">Your cart needs more "fancy" things! 🦋</p>
-            </div>
-        </div>
-
-        <div class="p-6 border-t-4 border-pink-200 bg-white">
-            <div class="flex justify-between items-center mb-6">
-                <span class="font-bold text-purple-600 italic">Total Luxurious Price:</span>
-                <span id="total-price" class="text-3xl font-fancy text-pink-500">Rp 0</span>
-            </div>
-            <button onclick="checkout()" class="btn-fancy w-full py-4 rounded-2xl font-bold text-lg shadow-xl shadow-pink-200 uppercase tracking-widest">
-                Pesan via WhatsApp ✨
-            </button>
-        </div>
-    </div>
-
-    <header id="home" class="relative pt-32 pb-20 overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-30">
-            <img src="https://images.unsplash.com/photo-1519340333755-507213bb9a4a?auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover" alt="fancy-bg">
-        </div>
-        <div class="container mx-auto px-4 text-center relative z-10">
-            <div class="inline-block bg-white/60 backdrop-blur-sm p-8 rounded-[4rem] border-4 border-dotted border-pink-400">
-                <h1 class="text-5xl md:text-7xl font-fancy text-pink-600 mb-4 italic">Splendiferous <span class="text-purple-600">Sucre</span></h1>
-                <p class="text-purple-500 font-bold italic max-w-2xl mx-auto mb-10 text-lg underline decoration-yellow-400">"That's fancy for sweet treats!"</p>
-                
-                <div class="inline-block relative">
-                    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=300&q=80" class="w-44 h-44 md:w-64 md:h-64 object-cover rounded-full border-8 border-lime-300 shadow-2xl mx-auto transform hover:scale-110 transition duration-500" alt="Shortcake">
-                    <div class="absolute -bottom-2 -right-4 bg-yellow-400 text-purple-800 text-sm px-6 py-2 rounded-full font-black shadow-lg">TREÈS CHIC! 💎</div>
+    <section id="home" class="hero-bg">
+        <div class="text-center px-4">
+            <div class="bg-white/70 backdrop-blur-md p-10 md:p-20 rounded-[5rem] border-[10px] border-double border-pink-500 shadow-2xl transform -rotate-2">
+                <h2 class="font-fancy text-5xl md:text-8xl text-pink-600 mb-4 text-shine">Ooh La La! ✨</h2>
+                <p class="font-elegant italic text-2xl md:text-4xl text-purple-800 mb-8 font-black">Bitung's Most Splendiferous Desserts</p>
+                <div class="flex justify-center gap-4">
+                    <span class="text-4xl">👑</span>
+                    <span class="text-4xl">🦋</span>
+                    <span class="text-4xl">💎</span>
+                    <span class="text-4xl">🌸</span>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main id="products" class="py-16 container mx-auto px-4">
-        <div class="text-center mb-16 fancy-decoration">
-            <h2 class="text-5xl font-fancy text-purple-700">The Fancy Menu</h2>
-            <p class="text-pink-500 font-bold italic mt-2">Everything is better with glitter and bows!</p>
+    <main id="products" class="py-24 container mx-auto px-6">
+        <div class="text-center mb-20">
+            <div class="inline-block relative">
+                <h2 class="font-fancy text-6xl text-purple-700 relative z-10">The Fancy Boutique</h2>
+                <div class="absolute -bottom-4 left-0 w-full h-4 bg-lime-300 -z-10 rounded-full opacity-50"></div>
+            </div>
+            <p class="mt-6 font-bold text-pink-500 italic text-xl">"Everything is better with a little bit of glitter!"</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="card-fancy p-5 flex flex-col justify-between">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="card-elegant p-6 flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-4 right-4 bg-yellow-300 p-2 rounded-full shadow-md z-10">✨</div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400" class="w-full h-56 object-cover rounded-3xl mb-4 border-2 border-pink-100" alt="Cupcake">
-                    <h3 class="font-fancy text-xl text-pink-500">Posh Cupcake</h3>
-                    <p class="text-xs text-purple-400 font-bold mb-2">With Extra Sprinkles!</p>
-                    <p class="font-black text-purple-700 mb-4">Rp 28.000</p>
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400" class="w-full h-64 object-cover rounded-[2rem] mb-6 border-4 border-pink-50 shadow-inner" alt="Cupcake">
+                    <div class="pearl-decoration"></div>
+                    <h3 class="font-fancy text-2xl text-pink-600">Posh Cupcake</h3>
+                    <p class="font-black text-purple-800 text-xl mt-2">Rp 28.000</p>
                 </div>
-                <button onclick="addToCart('Posh Cupcake', 28000, 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=100')" class="btn-fancy py-3 rounded-full font-bold shadow-md">Add to Bag 🦋</button>
+                <button onclick="addToCart('Posh Cupcake', 28000, 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=100')" class="btn-nancy w-full mt-6 py-3 rounded-full font-black uppercase tracking-wider">Add to Bag 🦋</button>
             </div>
 
-            <div class="card-fancy p-5 flex flex-col justify-between">
+            <div class="card-elegant p-6 flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-4 right-4 bg-yellow-300 p-2 rounded-full shadow-md z-10">💎</div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=400" class="w-full h-56 object-cover rounded-3xl mb-4 border-2 border-pink-100" alt="Choco">
-                    <h3 class="font-fancy text-xl text-pink-500">Exquisite Choco</h3>
-                    <p class="text-xs text-purple-400 font-bold mb-2">Rich & Fabulous</p>
-                    <p class="font-black text-purple-700 mb-4">Rp 38.000</p>
+                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=400" class="w-full h-64 object-cover rounded-[2rem] mb-6 border-4 border-pink-50 shadow-inner" alt="Choco">
+                    <div class="pearl-decoration"></div>
+                    <h3 class="font-fancy text-2xl text-pink-600">Exquisite Choco</h3>
+                    <p class="font-black text-purple-800 text-xl mt-2">Rp 38.000</p>
                 </div>
-                <button onclick="addToCart('Exquisite Choco', 38000, 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=100')" class="btn-fancy py-3 rounded-full font-bold shadow-md">Add to Bag 🦋</button>
+                <button onclick="addToCart('Exquisite Choco', 38000, 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=100')" class="btn-nancy w-full mt-6 py-3 rounded-full font-black uppercase tracking-wider">Add to Bag 🦋</button>
             </div>
 
-            <div class="card-fancy p-5 flex flex-col justify-between">
+            <div class="card-elegant p-6 flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-4 right-4 bg-yellow-300 p-2 rounded-full shadow-md z-10">🌸</div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=400" class="w-full h-56 object-cover rounded-3xl mb-4 border-2 border-pink-100" alt="Fancy Ice Cream">
-                    <h3 class="font-fancy text-xl text-pink-500">Parfait Glacé</h3>
-                    <p class="text-xs text-purple-400 font-bold mb-2">Double Scoop of Joy</p>
-                    <p class="font-black text-purple-700 mb-4">Rp 32.000</p>
+                    <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=400" class="w-full h-64 object-cover rounded-[2rem] mb-6 border-4 border-pink-50 shadow-inner" alt="Ice Cream">
+                    <div class="pearl-decoration"></div>
+                    <h3 class="font-fancy text-2xl text-pink-600">Parfait Glacé</h3>
+                    <p class="font-black text-purple-800 text-xl mt-2">Rp 32.000</p>
                 </div>
-                <button onclick="addToCart('Parfait Glacé', 32000, 'https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=100')" class="btn-fancy py-3 rounded-full font-bold shadow-md">Add to Bag 🦋</button>
+                <button onclick="addToCart('Parfait Glacé', 32000, 'https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=100')" class="btn-nancy w-full mt-6 py-3 rounded-full font-black uppercase tracking-wider">Add to Bag 🦋</button>
             </div>
 
-            <div class="card-fancy p-5 flex flex-col justify-between">
+            <div class="card-elegant p-6 flex flex-col justify-between overflow-hidden">
+                <div class="absolute top-4 right-4 bg-yellow-300 p-2 rounded-full shadow-md z-10">👑</div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400" class="w-full h-56 object-cover rounded-3xl mb-4 border-2 border-pink-100" alt="Nancy Shortcake">
-                    <h3 class="font-fancy text-xl text-pink-500">Magnifique Cake</h3>
-                    <p class="text-xs text-purple-400 font-bold mb-2">Fancy Strawberry Layers</p>
-                    <p class="font-black text-purple-700 mb-4">Rp 35.000</p>
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400" class="w-full h-64 object-cover rounded-[2rem] mb-6 border-4 border-pink-50 shadow-inner" alt="Shortcake">
+                    <div class="pearl-decoration"></div>
+                    <h3 class="font-fancy text-2xl text-pink-600">Magnifique Cake</h3>
+                    <p class="font-black text-purple-800 text-xl mt-2">Rp 35.000</p>
                 </div>
-                <button onclick="addToCart('Magnifique Cake', 35000, 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=100')" class="btn-fancy py-3 rounded-full font-bold shadow-md">Add to Bag 🦋</button>
+                <button onclick="addToCart('Magnifique Cake', 35000, 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=100')" class="btn-nancy w-full mt-6 py-3 rounded-full font-black uppercase tracking-wider">Add to Bag 🦋</button>
             </div>
         </div>
     </main>
 
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto bg-gradient-to-br from-white to-pink-50 rounded-[4rem] border-8 border-double border-lime-300 shadow-2xl overflow-hidden">
-                <div class="grid md:grid-cols-2">
-                    <div class="p-12 text-center md:text-left">
-                        <h2 class="font-fancy text-4xl text-purple-700 mb-4">Let's Be Fancy! 🦢</h2>
-                        <p class="text-pink-500 font-bold italic mb-8">Parties, birthdays, or just a fancy afternoon tea? Contact us!</p>
-                        <div class="space-y-4 text-purple-600 font-black italic">
-                            <p class="hover:scale-105 transition duration-300"><i class="fab fa-whatsapp text-green-500 mr-2"></i> +62 812-3456-7890</p>
-                            <p class="hover:scale-105 transition duration-300"><i class="fab fa-instagram text-pink-600 mr-2"></i> @fancy.dessert.bitung</p>
-                            <p class="hover:scale-105 transition duration-300"><i class="fas fa-map-marker-alt text-red-500 mr-2"></i> Bitung, Sulawesi Utara</p>
-                        </div>
+    <div id="cart-modal" class="hidden-modal fixed top-0 right-0 z-[60] w-full max-w-md h-full shadow-2xl flex flex-col">
+        <div class="p-8 border-b-8 border-double border-pink-200 bg-gradient-to-r from-pink-500 to-purple-600 text-white">
+            <div class="flex justify-between items-center">
+                <h2 class="font-fancy text-3xl">Fancy Treasures 💎</h2>
+                <button onclick="toggleModal()" class="text-4xl hover:rotate-90 transition-all">&times;</button>
+            </div>
+        </div>
+        
+        <div id="cart-items-list" class="flex-grow overflow-y-auto p-6 space-y-4">
+            </div>
+
+        <div class="p-8 bg-white border-t-8 border-lime-300">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-black text-purple-800 text-lg uppercase italic">Grand Total:</span>
+                <span id="total-price" class="text-4xl font-fancy text-pink-600">Rp 0</span>
+            </div>
+            <button onclick="checkout()" class="btn-nancy w-full py-5 rounded-2xl font-black text-xl shadow-xl">
+                CHECKOUT OOH LA LA! ✨
+            </button>
+        </div>
+    </div>
+
+    <section id="contact" class="py-24">
+        <div class="container mx-auto px-6">
+            <div class="lace-border max-w-5xl mx-auto bg-white rounded-[4rem] shadow-2xl overflow-hidden grid md:grid-cols-2">
+                <div class="p-16">
+                    <h2 class="font-fancy text-5xl text-purple-700 mb-6">Bonjour, Bitung! 🦢</h2>
+                    <p class="text-pink-500 font-bold text-xl italic mb-10">We love making everything fancy!</p>
+                    <div class="space-y-6 text-purple-900 font-black">
+                        <div class="flex items-center gap-4 text-xl"><i class="fab fa-whatsapp text-3xl text-green-500"></i> +62 812-3456-7890</div>
+                        <div class="flex items-center gap-4 text-xl"><i class="fab fa-instagram text-3xl text-pink-600"></i> @sucre.fancy</div>
+                        <div class="flex items-center gap-4 text-xl"><i class="fas fa-gem text-3xl text-blue-400"></i> Bitung, Sulawesi Utara</div>
                     </div>
-                    <div class="bg-purple-600 p-12 flex flex-col items-center justify-center text-center">
-                        <div class="bg-white p-6 rounded-full shadow-2xl mb-6 sparkle-effect border-4 border-yellow-300">
-                            <i class="fas fa-crown text-5xl text-yellow-500"></i>
+                </div>
+                <div class="bg-gradient-to-br from-pink-500 to-purple-700 flex flex-center items-center justify-center p-10">
+                    <div class="text-center">
+                        <div class="bg-white p-10 rounded-full border-8 border-lime-300 shadow-2xl mb-8 animate-bounce">
+                            <i class="fas fa-crown text-7xl text-yellow-500"></i>
                         </div>
-                        <p class="text-white font-fancy text-xl mb-4 text-shadow">Ready to order?</p>
-                        <button onclick="toggleModal()" class="w-full bg-yellow-400 text-purple-900 px-10 py-4 rounded-full hover:bg-white transition-all font-black shadow-lg transform hover:rotate-3">
-                            Check Your Bag ✨
+                        <button onclick="toggleModal()" class="bg-yellow-400 text-purple-900 px-10 py-4 rounded-full font-black text-xl hover:bg-white transition-all shadow-xl">
+                            VIEW BAG 🦋
                         </button>
                     </div>
                 </div>
@@ -218,9 +254,9 @@
         </div>
     </section>
 
-    <footer class="py-12 text-center bg-purple-700 text-white border-t-8 border-lime-300">
-        <div class="mb-4 text-3xl font-fancy">Stay Fancy, Bitung! 🦋✨</div>
-        <p class="text-sm italic opacity-75">&copy; 2024 La Sucre Fancy Bitung. Ooh La La!</p>
+    <footer class="py-12 bg-purple-900 text-white text-center border-t-[10px] border-double border-pink-500">
+        <p class="font-fancy text-3xl mb-4">Splendiferous & Elegant!</p>
+        <p class="opacity-70 italic">Created with Glitter and Bows in Bitung &copy; 2024</p>
     </footer>
 
     <script>
@@ -237,10 +273,8 @@
         function addToCart(name, price, image) {
             cart.push({ name, price, image });
             updateCartDisplay();
-            
-            const icon = document.getElementById('cart-icon');
-            icon.classList.add('cart-animate');
-            setTimeout(() => icon.classList.remove('cart-animate'), 300);
+            document.getElementById('cart-icon').classList.add('scale-125');
+            setTimeout(() => document.getElementById('cart-icon').classList.remove('scale-125'), 200);
         }
 
         function removeFromCart(index) {
@@ -250,59 +284,40 @@
 
         function updateCartDisplay() {
             cartCountEl.innerText = cart.length;
-            
             if (cart.length === 0) {
-                cartItemsList.innerHTML = `
-                    <div class="text-center py-20">
-                        <i class="fas fa-wand-magic-sparkles text-4xl text-pink-200 mb-4"></i>
-                        <p class="text-gray-400 italic">Your cart needs more "fancy" things! 🦋</p>
-                    </div>
-                `;
+                cartItemsList.innerHTML = '<div class="text-center py-20 text-gray-400 font-bold italic">No fancy treasures yet... 🎀</div>';
                 totalPriceEl.innerText = "Rp 0";
                 return;
             }
-
             let html = "";
             let total = 0;
-
             cart.forEach((item, index) => {
                 total += item.price;
                 html += `
-                    <div class="flex items-center justify-between bg-white border-2 border-pink-100 p-4 rounded-3xl shadow-sm hover:border-purple-300 transition">
-                        <div class="flex items-center gap-4">
-                            <img src="${item.image}" class="w-16 h-16 rounded-full object-cover border-2 border-lime-300">
-                            <div>
-                                <h4 class="font-bold text-purple-700 text-sm">${item.name}</h4>
-                                <p class="text-pink-500 font-black text-xs">Rp ${item.price.toLocaleString('id-ID')}</p>
-                            </div>
+                    <div class="flex items-center gap-4 bg-white border-4 border-pink-100 p-4 rounded-[2rem] shadow-sm">
+                        <img src="${item.image}" class="w-20 h-20 rounded-full border-2 border-lime-300 object-cover">
+                        <div class="flex-grow">
+                            <h4 class="font-bold text-purple-700 uppercase text-sm">${item.name}</h4>
+                            <p class="text-pink-600 font-black italic">Rp ${item.price.toLocaleString('id-ID')}</p>
                         </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:scale-125 transition px-2">
-                            <i class="fas fa-times-circle"></i>
-                        </button>
+                        <button onclick="removeFromCart(${index})" class="text-red-500 text-2xl p-2 hover:scale-125 transition">&times;</button>
                     </div>
                 `;
             });
-
             cartItemsList.innerHTML = html;
             totalPriceEl.innerText = "Rp " + total.toLocaleString('id-ID');
         }
 
         function checkout() {
-            if (cart.length === 0) {
-                alert("Fancy Nancy says: You need to pick a dessert first! 🧁");
-                return;
-            }
-            
-            let summary = "Bonjour Admin! ✨\n\nI want to order these fancy treats:\n";
+            if (cart.length === 0) return alert("Your bag is empty, darling!");
+            let msg = "Bonjour! 🦋 I'd like to order these splendiferous treats:\n\n";
             let total = 0;
             cart.forEach((item, i) => {
-                summary += `${i+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}\n`;
+                msg += `${i+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}\n`;
                 total += item.price;
             });
-            summary += `\nTotal: Rp ${total.toLocaleString('id-ID')}\n\nOoh La La! Please process it immediately! 🦋💎`;
-            
-            const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(summary)}`;
-            window.open(waUrl, '_blank');
+            msg += `\nTotal: Rp ${total.toLocaleString('id-ID')}\n\nOoh La La! Merci! 💎✨`;
+            window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`);
         }
     </script>
 </body>
