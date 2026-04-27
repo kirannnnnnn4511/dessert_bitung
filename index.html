@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dessert Bitung | Sweet Cart 🎀</title>
+    <title>Le Petit Sucre | Dessert Bitung 🎀</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -32,14 +32,34 @@
             border-color: #ffb1c1;
             box-shadow: 0 10px 20px rgba(255, 180, 190, 0.2);
         }
-        /* Modal Style */
+        /* Logo Styling */
+        .shop-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: bold;
+            color: #f472b6;
+        }
+        .logo-icon {
+            background: #fff;
+            padding: 5px;
+            border-radius: 50%;
+            border: 2px solid #ffcad4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(255,182,193,0.3);
+        }
+        /* Modal Shopee Style */
         #cart-modal {
-            transition: opacity 0.3s ease, visibility 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .hidden-modal {
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
+            transform: translateX(100%);
         }
         @keyframes cart-pop {
             0% { transform: scale(1); }
@@ -53,114 +73,160 @@
 
     <nav class="bg-white/80 backdrop-blur-md border-b border-pink-100 fixed w-full z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-coquette italic font-bold text-pink-400">🎀 Dessert Bitung</a>
+            <div class="shop-logo text-xl md:text-2xl">
+                <div class="logo-icon">
+                    <span class="text-pink-400">🎀</span>
+                </div>
+                <span>Le Petit Sucre</span>
+            </div>
+            
             <div class="hidden md:flex space-x-8 font-medium italic">
                 <a href="#home" class="hover:text-pink-400 transition">La Maison</a>
                 <a href="#products" class="hover:text-pink-400 transition">Les Desserts</a>
+                <a href="#contact" class="hover:text-pink-400 transition">Contact</a>
             </div>
-            <div onclick="toggleModal()" id="cart-icon" class="relative bg-pink-50 p-2 rounded-full cursor-pointer hover:bg-pink-100 transition">
+            <div onclick="toggleModal()" id="cart-icon" class="relative bg-pink-50 p-2 rounded-full cursor-pointer hover:bg-pink-100 transition shadow-sm">
                 <i class="fas fa-shopping-bag text-pink-400"></i>
-                <span id="cart-count" class="absolute -top-1 -right-1 bg-pink-300 text-white text-[10px] rounded-full px-1.5 border-2 border-white">0</span>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-pink-400 text-white text-[10px] rounded-full px-1.5 border-2 border-white">0</span>
             </div>
         </div>
     </nav>
 
-    <div id="cart-modal" class="hidden-modal fixed inset-0 z-[60] flex justify-end">
-        <div onclick="toggleModal()" class="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
-        <div class="relative w-full max-w-md bg-white h-full shadow-2xl p-6 flex flex-col">
-            <div class="flex justify-between items-center border-b border-pink-100 pb-4 mb-4">
-                <h2 class="font-coquette italic text-2xl text-pink-400">Keranjang Manismu 🦢</h2>
-                <button onclick="toggleModal()" class="text-gray-400 hover:text-pink-400"><i class="fas fa-times"></i></button>
+    <div id="cart-modal" class="hidden-modal fixed top-0 right-0 z-[60] w-full max-w-md h-full bg-white shadow-2xl flex flex-col">
+        <div class="p-6 border-b border-pink-100 flex justify-between items-center bg-pink-50/30">
+            <h2 class="font-coquette italic text-2xl text-pink-400">Keranjang Belanja 🦢</h2>
+            <button onclick="toggleModal()" class="text-gray-400 hover:text-pink-500 text-2xl">&times;</button>
+        </div>
+        
+        <div id="cart-items-list" class="flex-grow overflow-y-auto p-6 space-y-4">
+            <div class="text-center py-20">
+                <p class="text-gray-300 italic">Belum ada dessert pilihanmu... 🎀</p>
             </div>
-            
-            <div id="cart-items-list" class="flex-grow overflow-y-auto space-y-4 pr-2">
-                <p class="text-center text-gray-400 italic pt-10">Belum ada pesanan... 🎀</p>
-            </div>
+        </div>
 
-            <div class="border-t border-pink-100 pt-4 mt-4">
-                <div class="flex justify-between font-bold text-lg text-gray-800 mb-4 px-2">
-                    <span>Total Keseluruhan</span>
-                    <span id="total-price" class="text-pink-400">Rp 0</span>
-                </div>
-                <button onclick="checkout()" class="w-full bg-pink-400 text-white py-4 rounded-2xl hover:bg-pink-500 transition font-bold shadow-lg shadow-pink-100">
-                    Selesaikan Pesanan via WA 🎀
-                </button>
+        <div class="p-6 border-t border-pink-100 bg-pink-50/10">
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-semibold text-gray-500 italic">Total Estimasi:</span>
+                <span id="total-price" class="text-2xl font-bold text-pink-400">Rp 0</span>
             </div>
+            <button onclick="checkout()" class="w-full bg-pink-400 text-white py-4 rounded-full font-bold text-lg hover:bg-pink-500 shadow-lg shadow-pink-200 transition-transform active:scale-95">
+                Pesan via WhatsApp Sekarang 🎀
+            </button>
         </div>
     </div>
 
     <header id="home" class="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-rose-50 to-transparent">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover" alt="bg">
+        </div>
         <div class="container mx-auto px-4 text-center relative z-10">
             <h1 class="text-5xl md:text-7xl font-coquette italic text-gray-800 mb-6">Le Petit <span class="text-pink-300">Sucre</span></h1>
             <p class="text-gray-500 italic max-w-2xl mx-auto mb-10">Koleksi manisan premium untuk hari-hari estetikmu di Bitung.</p>
+            
+            <div class="inline-block relative">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=300&q=80" class="w-40 h-40 md:w-56 md:h-56 object-cover rounded-full border-4 border-white shadow-pink-200 shadow-lg mx-auto transform hover:rotate-12 transition duration-500" alt="New Arrival">
+                <div class="absolute -bottom-2 -right-2 bg-pink-300 text-white text-xs px-4 py-2 rounded-full font-bold">NEW ✨</div>
+            </div>
         </div>
     </header>
 
     <main id="products" class="py-16 container mx-auto px-4">
         <div class="text-center mb-16 bow-decoration">
             <h2 class="text-4xl font-coquette italic text-gray-800">Our Sweet Menu</h2>
+            <p class="text-pink-300 italic">Pilih kebahagiaanmu hari ini</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Cupcake">
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-sm" alt="Cupcake">
                     <h3 class="font-coquette text-lg font-bold text-pink-400">Coquette Cupcake</h3>
-                    <p class="font-bold text-gray-600 mb-4">Rp 28000</p>
+                    <p class="text-xs text-gray-400 italic mb-2">Stroberi & Mutiara Gula</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 28.000</p>
                 </div>
                 <button onclick="addToCart('Coquette Cupcake', 28000, 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=100')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
 
             <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Choco">
+                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-sm" alt="Choco">
                     <h3 class="font-coquette text-lg font-bold text-pink-400">Vintage Choco</h3>
-                    <p class="font-bold text-gray-600 mb-4">Rp 38000</p>
+                    <p class="text-xs text-gray-400 italic mb-2">Cokelat Lumer Klasik</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 38.000</p>
                 </div>
                 <button onclick="addToCart('Vintage Choco', 38000, 'https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=100')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
 
             <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1590080876477-04022634354b?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Silky Pudding">
-                    <h3 class="font-coquette text-lg font-bold text-pink-400">Silky Pearl Pudding</h3>
-                    <p class="font-bold text-gray-600 mb-4">Rp 25000</p>
+                    <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-sm" alt="Ice Cream Bowl">
+                    <h3 class="font-coquette text-lg font-bold text-pink-400">Strawberry Gelato</h3>
+                    <p class="text-xs text-gray-400 italic mb-2">Double Scoop & Rose Petals</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 32.000</p>
                 </div>
-                <button onclick="addToCart('Silky Pearl Pudding', 25000, 'https://images.unsplash.com/photo-1590080876477-04022634354b?auto=format&fit=crop&w=100')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
+                <button onclick="addToCart('Strawberry Gelato', 32000, 'https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?auto=format&fit=crop&w=100')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
 
             <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Shortcake">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4 shadow-sm" alt="Strawberry Shortcake">
                     <h3 class="font-coquette text-lg font-bold text-pink-400">Strawberry Shortcake</h3>
-                    <p class="font-bold text-gray-600 mb-4">Rp 35000</p>
+                    <p class="text-xs text-gray-400 italic mb-2">Sponge Cake & Fresh Cream</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 35.000</p>
                 </div>
                 <button onclick="addToCart('Strawberry Shortcake', 35000, 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=100')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
         </div>
     </main>
 
-    <footer id="contact" class="py-12 text-center text-pink-300 text-xs italic">
-        <p>Hubungi kami: +62 812-3456-7890 | @dessert.bitung</p>
-        <p class="mt-4 font-bold">🎀 Le Petit Sucre Bitung 🎀</p>
+    <section id="contact" class="py-20 bg-white/50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-[3rem] shadow-xl shadow-pink-100 overflow-hidden border border-pink-50">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-12 flex flex-col justify-center text-center md:text-left">
+                        <h2 class="font-coquette italic text-4xl text-pink-400 mb-4">Let's Connect 🦢</h2>
+                        <p class="text-gray-500 italic mb-8">Pesan khusus untuk acara ulang tahun, pernikahan, atau sekadar memanjakan diri? Hubungi kami sekarang!</p>
+                        <div class="space-y-4 text-pink-400 font-medium italic">
+                            <p><i class="fab fa-whatsapp mr-2"></i> +62 812-3456-7890</p>
+                            <p><i class="fab fa-instagram mr-2"></i> @dessert.bitung</p>
+                            <p><i class="fas fa-map-marker-alt mr-2"></i> Bitung, Sulawesi Utara</p>
+                        </div>
+                    </div>
+                    <div class="bg-pink-100 p-12 flex flex-col items-center justify-center text-center">
+                        <div class="bg-white p-6 rounded-3xl shadow-inner mb-6">
+                            <i class="fas fa-envelope-open-text text-5xl text-pink-300"></i>
+                        </div>
+                        <p class="mb-4 text-pink-500 font-bold italic">Sudah siap memesan? ✨</p>
+                        <button onclick="toggleModal()" class="w-full bg-pink-400 text-white px-10 py-4 rounded-full hover:bg-pink-500 transition-all font-bold shadow-lg transform hover:scale-105">
+                            Cek Keranjang 🎀
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-pink-300 text-xs italic">
+        <div class="mb-4 text-2xl italic font-coquette">Le Petit Sucre</div>
+        <p>&copy; 2024 Le Petit Sucre Bitung. Dibuat dengan cinta di Bitung.</p>
     </footer>
 
     <script>
         let cart = [];
-        const modal = document.getElementById('cart-modal');
-        const cartCount = document.getElementById('cart-count');
-        const itemsList = document.getElementById('cart-items-list');
+        const cartModal = document.getElementById('cart-modal');
+        const cartCountEl = document.getElementById('cart-count');
+        const cartItemsList = document.getElementById('cart-items-list');
         const totalPriceEl = document.getElementById('total-price');
 
         function toggleModal() {
-            modal.classList.toggle('hidden-modal');
+            cartModal.classList.toggle('hidden-modal');
         }
 
-        function addToCart(name, price, img) {
-            cart.push({ name, price, img });
-            updateCart();
+        function addToCart(name, price, image) {
+            cart.push({ name, price, image });
+            updateCartDisplay();
             
-            // Animasi ikon tas
+            // Animasi icon
             const icon = document.getElementById('cart-icon');
             icon.classList.add('cart-animate');
             setTimeout(() => icon.classList.remove('cart-animate'), 300);
@@ -168,59 +234,59 @@
 
         function removeFromCart(index) {
             cart.splice(index, 1);
-            updateCart();
+            updateCartDisplay();
         }
 
-        function updateCart() {
-            cartCount.innerText = cart.length;
+        function updateCartDisplay() {
+            cartCountEl.innerText = cart.length;
             
             if (cart.length === 0) {
-                itemsList.innerHTML = '<p class="text-center text-gray-400 italic pt-10">Belum ada pesanan... 🎀</p>';
+                cartItemsList.innerHTML = '<div class="text-center py-20 text-gray-300 italic">Belum ada dessert pilihanmu... 🎀</div>';
                 totalPriceEl.innerText = "Rp 0";
                 return;
             }
 
             let html = "";
             let total = 0;
-            
+
             cart.forEach((item, index) => {
                 total += item.price;
                 html += `
-                    <div class="flex items-center justify-between bg-pink-50/50 p-3 rounded-2xl border border-pink-100">
-                        <div class="flex items-center gap-3">
-                            <img src="${item.img}" class="w-12 h-12 rounded-lg object-cover border border-white shadow-sm">
+                    <div class="flex items-center justify-between bg-white border border-pink-50 p-4 rounded-2xl shadow-sm">
+                        <div class="flex items-center gap-4">
+                            <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover border border-pink-50 shadow-sm">
                             <div>
-                                <p class="text-sm font-bold text-gray-700">${item.name}</p>
-                                <p class="text-xs text-pink-400 font-semibold">Rp ${item.price.toLocaleString()}</p>
+                                <h4 class="font-bold text-gray-700 text-sm">${item.name}</h4>
+                                <p class="text-pink-400 font-semibold text-xs">Rp ${item.price.toLocaleString('id-ID')}</p>
                             </div>
                         </div>
-                        <button onclick="removeFromCart(${index})" class="text-red-300 hover:text-red-500 p-2 transition">
+                        <button onclick="removeFromCart(${index})" class="text-pink-200 hover:text-red-400 transition text-lg px-2">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
                 `;
             });
 
-            itemsList.innerHTML = html;
-            totalPriceEl.innerText = "Rp " + total.toLocaleString();
+            cartItemsList.innerHTML = html;
+            totalPriceEl.innerText = "Rp " + total.toLocaleString('id-ID');
         }
 
         function checkout() {
             if (cart.length === 0) {
-                alert("Wah, keranjangmu masih kosong nih! 🧁");
+                alert("Pilih dessert favoritmu dulu ya! 🧁");
                 return;
             }
             
+            let summary = "Halo Admin Le Petit Sucre! 🦢\n\nSaya ingin memesan:\n";
             let total = 0;
-            let message = "Halo Admin Le Petit Sucre! 🎀\nSaya ingin memesan:\n\n";
             cart.forEach((item, i) => {
-                message += `${i+1}. ${item.name} (Rp ${item.price.toLocaleString()})\n`;
+                summary += `${i+1}. ${item.name} - Rp ${item.price.toLocaleString('id-ID')}\n`;
                 total += item.price;
             });
-            message += `\nTotal: Rp ${total.toLocaleString()}\nMohon diproses ya, terima kasih! 🦢`;
+            summary += `\nTotal: Rp ${total.toLocaleString('id-ID')}\n\nMohon segera diproses ya 🎀`;
             
-            let encodedMsg = encodeURIComponent(message);
-            window.open(`https://wa.me/6281234567890?text=${encodedMsg}`);
+            const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(summary)}`;
+            window.open(waUrl, '_blank');
         }
     </script>
 </body>
