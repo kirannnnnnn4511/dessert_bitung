@@ -79,7 +79,6 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            
             <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
                 <div>
                     <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Cupcake">
@@ -112,4 +111,76 @@
 
             <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Toast">
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Strawberry Shortcake">
+                    <h3 class="font-coquette text-lg font-bold text-pink-400">Strawberry Shortcake</h3>
+                    <p class="text-xs text-gray-400 italic mb-2">Sponge Cake & Fresh Cream</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 35.000</p>
+                </div>
+                <button onclick="addToCart('Strawberry Shortcake')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
+            </div>
+        </div>
+    </main>
+
+    <section id="contact" class="py-20 bg-white/50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto bg-white rounded-[3rem] shadow-xl shadow-pink-100 overflow-hidden border border-pink-50">
+                <div class="grid md:grid-cols-2">
+                    <div class="p-12 flex flex-col justify-center text-center md:text-left">
+                        <h2 class="font-coquette italic text-4xl text-pink-400 mb-4">Let's Connect 🦢</h2>
+                        <p class="text-gray-500 italic mb-8">Pesan khusus untuk acara ulang tahun, pernikahan, atau sekadar memanjakan diri? Hubungi kami sekarang!</p>
+                        <div class="space-y-4 text-pink-400 font-medium italic">
+                            <p><i class="fab fa-whatsapp mr-2"></i> +62 812-3456-7890</p>
+                            <p><i class="fab fa-instagram mr-2"></i> @dessert.bitung</p>
+                            <p><i class="fas fa-map-marker-alt mr-2"></i> Bitung, Sulawesi Utara</p>
+                        </div>
+                    </div>
+                    <div class="bg-pink-100 p-12 flex flex-col items-center justify-center text-center">
+                        <div class="bg-white p-6 rounded-3xl shadow-inner mb-6">
+                            <i class="fas fa-envelope-open-text text-5xl text-pink-300"></i>
+                        </div>
+                        <button onclick="checkout()" class="w-full bg-pink-400 text-white px-10 py-4 rounded-full hover:bg-pink-500 transition-all font-bold shadow-lg transform hover:scale-105">
+                            Order via WhatsApp 🎀
+                        </button>
+                        <p class="mt-4 text-[10px] uppercase tracking-widest text-pink-500 font-bold">Fast Response: 09.00 - 21.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 text-center text-pink-300 text-xs italic">
+        <div class="mb-4">🎀 🦢 🎀</div>
+        <p>&copy; 2024 Le Petit Sucre Bitung. Dibuat dengan cinta di Bitung.</p>
+    </footer>
+
+    <script>
+        let count = 0;
+        let cartItems = [];
+        const cartCountElement = document.getElementById('cart-count');
+        const cartIcon = document.getElementById('cart-icon');
+
+        function addToCart(itemName) {
+            count++;
+            cartItems.push(itemName);
+            cartCountElement.innerText = count;
+            
+            // Animasi keranjang
+            cartIcon.classList.add('cart-animate');
+            setTimeout(() => cartIcon.classList.remove('cart-animate'), 300);
+        }
+
+        function checkout() {
+            if(count === 0) {
+                alert("Pilih dessert favoritmu dulu ya sebelum memesan! 🦢");
+            } else {
+                let list = cartItems.join(", ");
+                alert("Pesananmu: " + list + "\n\nMenuju WhatsApp Admin Dessert Bitung... 🎀");
+                // Reset keranjang setelah checkout (simulasi)
+                count = 0;
+                cartItems = [];
+                cartCountElement.innerText = "0";
+            }
+        }
+    </script>
+</body>
+</html>
