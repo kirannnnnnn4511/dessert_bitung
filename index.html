@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dessert Bitung | Coquette Edition 🎀</title>
+    <title>Dessert Bitung | Menu Lengkap 🎀</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -11,14 +11,10 @@
         body { font-family: 'Poppins', sans-serif; }
         .font-coquette { font-family: 'Playfair Display', serif; }
         .smooth-scroll { scroll-behavior: smooth; }
-        
-        /* Background pattern halus bunga/lace */
         .bg-coquette {
             background-color: #fff5f7;
             background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
         }
-
-        /* Dekorasi Pita (Bow) Custom */
         .bow-decoration::before {
             content: "🎀";
             display: block;
@@ -26,135 +22,94 @@
             font-size: 2rem;
             margin-bottom: 10px;
         }
-
-        /* Card Soft Hover */
         .card-girly {
             border: 1px solid #ffe4e9;
             transition: all 0.3s ease;
+            background: white;
         }
         .card-girly:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             border-color: #ffb1c1;
+            box-shadow: 0 10px 20px rgba(255, 180, 190, 0.2);
         }
+        @keyframes cart-pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .cart-animate { animation: cart-pop 0.3s ease-out; }
     </style>
 </head>
 <body class="bg-coquette smooth-scroll text-gray-700">
 
     <nav class="bg-white/80 backdrop-blur-md border-b border-pink-100 fixed w-full z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-coquette italic font-bold text-pink-400">
-                🎀 Dessert Bitung
-            </a>
-            
-            <div class="hidden md:flex space-x-8 font-medium">
-                <a href="#home" class="hover:text-pink-400 transition italic">La Maison</a>
-                <a href="#products" class="hover:text-pink-400 transition italic">Les Desserts</a>
-                <a href="#contact" class="hover:text-pink-400 transition italic">Contact</a>
+            <a href="#" class="text-2xl font-coquette italic font-bold text-pink-400">🎀 Dessert Bitung</a>
+            <div class="hidden md:flex space-x-8 font-medium italic">
+                <a href="#home" class="hover:text-pink-400 transition">La Maison</a>
+                <a href="#products" class="hover:text-pink-400 transition">Les Desserts</a>
+                <a href="#contact" class="hover:text-pink-400 transition">Contact</a>
             </div>
-
-            <div class="flex items-center space-x-4">
-                <div class="relative bg-pink-50 p-2 rounded-full">
-                    <i class="fas fa-shopping-bag text-pink-400"></i>
-                    <span class="absolute -top-1 -right-1 bg-pink-300 text-white text-[10px] rounded-full px-1.5 border-2 border-white">0</span>
-                </div>
+            <div id="cart-icon" class="relative bg-pink-50 p-2 rounded-full cursor-pointer">
+                <i class="fas fa-shopping-bag text-pink-400"></i>
+                <span id="cart-count" class="absolute -top-1 -right-1 bg-pink-300 text-white text-[10px] rounded-full px-1.5 border-2 border-white">0</span>
             </div>
         </div>
     </nav>
 
-    <header id="home" class="pt-32 pb-20 bg-gradient-to-b from-rose-50 to-white">
-        <div class="container mx-auto px-4 text-center">
-            <span class="inline-block bg-pink-100 text-pink-500 px-4 py-1 rounded-full text-xs tracking-widest uppercase mb-4">Sweet & Aesthetic</span>
-            <h1 class="text-5xl md:text-7xl font-coquette italic text-gray-800 mb-6">
-                Le Petit <span class="text-pink-300">Sucre</span> Bitung
-            </h1>
-            <p class="text-gray-500 italic max-w-2xl mx-auto mb-10">
-                Membawa nuansa manis ala kafe Paris ke Bitung. Dibuat dengan resep penuh cinta dan sentuhan estetik di setiap gigitan. 🌸
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-4">
-                <a href="#products" class="bg-pink-300 text-white px-10 py-3 rounded-full hover:bg-pink-400 transition shadow-md font-coquette italic">Cek Menu 🎀</a>
+    <header id="home" class="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-rose-50 to-transparent">
+        <div class="absolute inset-0 z-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1500&q=80" class="w-full h-full object-cover" alt="bg">
+        </div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-5xl md:text-7xl font-coquette italic text-gray-800 mb-6">Le Petit <span class="text-pink-300">Sucre</span></h1>
+            <p class="text-gray-500 italic max-w-2xl mx-auto mb-10">Koleksi manisan premium untuk hari-hari estetikmu di Bitung.</p>
+            
+            <div class="inline-block relative">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=300&q=80" class="w-40 h-40 md:w-56 md:h-56 object-cover rounded-full border-4 border-white shadow-pink-200 shadow-lg mx-auto transform hover:rotate-12 transition duration-500" alt="New Arrival">
+                <div class="absolute -bottom-2 -right-2 bg-pink-300 text-white text-xs px-4 py-2 rounded-full font-bold">NEW ✨</div>
             </div>
         </div>
     </header>
 
-    <section id="products" class="py-20 container mx-auto px-4">
+    <main id="products" class="py-16 container mx-auto px-4">
         <div class="text-center mb-16 bow-decoration">
-            <h2 class="text-4xl font-coquette italic text-gray-800">Our Sweetest Gallery</h2>
-            <p class="text-pink-300 italic">"Gula, bunga, dan segala yang indah"</p>
+            <h2 class="text-4xl font-coquette italic text-gray-800">Our Sweet Menu</h2>
+            <p class="text-pink-300 italic">Pilih kebahagiaanmu hari ini</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="bg-white rounded-3xl overflow-hidden card-girly p-4">
-                <div class="relative group">
-                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=500&q=80" alt="Cupcake" class="w-full h-64 object-cover rounded-2xl border-2 border-pink-50">
-                    <div class="absolute top-3 left-3 bg-white/80 px-3 py-1 rounded-full text-[10px] text-pink-400 uppercase tracking-widest">Favorit 🦢</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Cupcake">
+                    <h3 class="font-coquette text-lg font-bold text-pink-400">Coquette Cupcake</h3>
+                    <p class="text-xs text-gray-400 italic mb-2">Stroberi & Mutiara Gula</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 28.000</p>
                 </div>
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-coquette italic font-bold mb-2 text-pink-400">Coquette Cupcake</h3>
-                    <p class="text-gray-400 text-sm mb-4 italic">Sentuhan strawberry premium dengan hiasan mutiara gula.</p>
-                    <p class="text-lg font-bold text-gray-700 mb-4 font-coquette italic">Rp 28.000</p>
-                    <button class="w-full border-2 border-pink-200 text-pink-400 py-2 rounded-full hover:bg-pink-50 transition font-medium italic">
-                        Add to Basket 🎀
-                    </button>
-                </div>
+                <button onclick="addToCart('Coquette Cupcake')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
 
-            <div class="bg-white rounded-3xl overflow-hidden card-girly p-4">
-                <div class="relative group">
-                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=500&q=80" alt="Chocolate" class="w-full h-64 object-cover rounded-2xl border-2 border-pink-50">
+            <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Choco">
+                    <h3 class="font-coquette text-lg font-bold text-pink-400">Vintage Choco</h3>
+                    <p class="text-xs text-gray-400 italic mb-2">Cokelat Lumer Klasik</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 38.000</p>
                 </div>
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-coquette italic font-bold mb-2 text-pink-400">Vintage Choco</h3>
-                    <p class="text-gray-400 text-sm mb-4 italic">Kue cokelat lumer dengan gaya klasik yang mempesona.</p>
-                    <p class="text-lg font-bold text-gray-700 mb-4 font-coquette italic">Rp 38.000</p>
-                    <button class="w-full border-2 border-pink-200 text-pink-400 py-2 rounded-full hover:bg-pink-50 transition font-medium italic">
-                        Add to Basket 🎀
-                    </button>
-                </div>
+                <button onclick="addToCart('Vintage Choco')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
 
-            <div class="bg-white rounded-3xl overflow-hidden card-girly p-4">
-                <div class="relative group">
-                    <img src="" alt="Macarons" class="w-full h-64 object-cover rounded-2xl border-2 border-pink-50">https://images.unsplash.com/photo-1558399159-05a97240000d?auto=format&fit=crop&w=500&q=80
+            <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1551446591-142875a901a1?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Macarons">
+                    <h3 class="font-coquette text-lg font-bold text-pink-400">Dreamy Macarons</h3>
+                    <p class="text-xs text-gray-400 italic mb-2">Isi 3 Macarons Pastel</p>
+                    <p class="font-bold text-gray-600 mb-4">Rp 45.000</p>
                 </div>
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-coquette italic font-bold mb-2 text-pink-400">Dreamy Macarons</h3>
-                    <p class="text-gray-400 text-sm mb-4 italic">Macarons pastel lembut seindah awan di sore hari.</p>
-                    <p class="text-lg font-bold text-gray-700 mb-4 font-coquette italic">Rp 48.000</p>
-                    <button class="w-full border-2 border-pink-200 text-pink-400 py-2 rounded-full hover:bg-pink-50 transition font-medium italic">
-                        Add to Basket 🎀
-                    </button>
-                </div>
+                <button onclick="addToCart('Dreamy Macarons')" class="w-full py-2 bg-pink-50 text-pink-400 rounded-full text-sm font-bold border border-pink-100 hover:bg-pink-100 transition">Add 🎀</button>
             </div>
-        </div>
-    </section>
 
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto bg-white border border-pink-100 rounded-[3rem] p-12 shadow-sm text-center">
-                <h2 class="text-3xl font-coquette italic text-pink-400 mb-4">Letter for Us</h2>
-                <p class="text-gray-400 italic mb-8">Pesan khusus atau pesanan custom untuk hari spesialmu? 🦢</p>
-                
-                <form action="#" class="space-y-6">
-                    <input type="text" placeholder="Your Sweet Name" class="w-full bg-pink-50/30 border-b border-pink-200 px-4 py-3 focus:outline-none focus:border-pink-400 italic transition">
-                    <textarea placeholder="Tell us your wishes..." rows="3" class="w-full bg-pink-50/30 border-b border-pink-200 px-4 py-3 focus:outline-none focus:border-pink-400 italic transition"></textarea>
-                    <button class="bg-pink-300 text-white px-12 py-3 rounded-full hover:bg-pink-400 transition shadow-sm font-coquette italic">
-                        Send Love 💌
-                    </button>
-                </form>
-
-                <div class="mt-10 flex justify-center space-x-6 text-pink-300 text-xl">
-                    <i class="fab fa-instagram hover:text-pink-400 cursor-pointer"></i>
-                    <i class="fab fa-whatsapp hover:text-pink-400 cursor-pointer"></i>
-                    <i class="fab fa-tiktok hover:text-pink-400 cursor-pointer"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="py-12 text-center text-pink-300 text-sm">
-        <div class="w-24 h-[1px] bg-pink-100 mx-auto mb-6"></div>
-        <p class="font-coquette italic">&copy; 2026 Dessert Bitung. Created with Softness 🎀</p>
-    </footer>
-
-</body>
-</html>
+            <div class="card-girly rounded-3xl p-4 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?auto=format&fit=crop&w=400" class="w-full h-48 object-cover rounded-2xl mb-4" alt="Toast">
